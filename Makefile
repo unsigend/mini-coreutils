@@ -19,6 +19,15 @@
 # Main Makefile for building mini-coreutils and qsh
 # Designed for kernel development
 
+# Include config
+include config/Makefile
+
+export CC
+export CXX
+export DEBUG_MODE
+export KERNEL_MODE
+
+# Directories definitions
 ROOT_DIR  	:=  .
 UTIL_DIR	:=	coreutils
 SHELL_DIR	:=	qsh

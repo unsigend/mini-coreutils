@@ -1,0 +1,8 @@
+# Ignore all files in build directory
+coreutils/build/
+qsh/build/
+
+*.o
+*.out
+*.d
+.DS_Store

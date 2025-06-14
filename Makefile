@@ -18,27 +18,36 @@
 
 # Main Makefile for building mini-coreutils and qsh
 # Designed for kernel development
+# This Makefile only for the root control usage
+# For the sub-makefile, please refer to the sub-Makefile
 
 # Include config
 include config/Makefile
 
+# Directories definitions
+ROOT_DIR  	  :=    .
+UTIL_DIR	  :=	coreutils
+SHELL_DIR	  :=	qsh
+SCRIPT_DIR	  :=	script
+BUILD_DIR	  :=	build
+FULL_PATH     :=  	$(shell pwd)
+EXTERNAL_PATH :=    $(FULL_PATH)/external
+
+# Export variables for sub-makefile
 export CC
 export CXX
 export DEBUG_MODE
 export KERNEL_MODE
+export STAND_ALONE_MODE
 
-# Directories definitions
-ROOT_DIR  	:=  .
-UTIL_DIR	:=	coreutils
-SHELL_DIR	:=	qsh
-
-.PHONY: clean all utils qsh help test test-utils test-qsh
+.PHONY: clean all utils qsh help test test-utils test-qsh sync
 .DEFAULT_GOAL := help
 
 # Clean all builds
 clean:
 	@$(MAKE) -C $(UTIL_DIR) clean
 	@$(MAKE) -C $(SHELL_DIR) clean
+	@rm -rf $(BUILD_DIR)
 
 # Test all including coreutils and qsh
 test: test-utils test-qsh
@@ -60,6 +69,11 @@ qsh:
 test-qsh:
 	@$(MAKE) -C $(SHELL_DIR) test
 
+# Sync dependency
+sync:
+	@chmod +x $(SCRIPT_DIR)/sync-dep.sh
+	@$(BASH) $(SCRIPT_DIR)/sync-dep.sh
+
 # Show help message
 help:
 	@echo "USAGE: "
@@ -71,4 +85,5 @@ help:
 	@echo "  make test-utils\ttest coreutils"
 	@echo "  make test-qsh\t\ttest qsh"
 	@echo "  make clean\t\tclean all builds"
+	@echo "  make sync\t\tsync dependency"
 

@@ -1,4 +1,5 @@
 # Ignore all files in build directory
+build/
 coreutils/build/
 qsh/build/
 
@@ -6,3 +7,5 @@ qsh/build/
 *.out
 *.d
 .DS_Store
+
+.vscode/

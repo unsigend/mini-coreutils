@@ -15,19 +15,16 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-# Config Makefile
+# Qsh Makefile
 
-# Toolchain prefix
-TOOL_CHAIN_PREFIX := 
-CC   :=   $(TOOL_CHAIN_PREFIX)gcc
-CXX  :=   $(TOOL_CHAIN_PREFIX)g++
 
-# 0: release mode, 1: debug mode
-DEBUG_MODE := 0 
+.PHONY: all test clean
 
-# 0: not use for kernel, 1: use for kernel
-KERNEL_MODE := 0
+all:
+	@:
 
-# 0: not use for standalone, 1: use for standalone
-# When use flag for standalone, the executable files will be built for every command
-STAND_ALONE_MODE := 1
+test:
+	@:
+
+clean:
+	@:
